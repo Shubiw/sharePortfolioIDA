@@ -25,7 +25,7 @@ limitations under the License.
 This library allows the creation and handling of shares both simple or complex.
 </description>
 <url>
-https://github.com/DavidNavarreICS/SharePortfolioIDA
+    https://github.com/Shubiw/sharePortofolioIDA/tree/master
 </url>
 <licenses>
 <license>
@@ -37,8 +37,8 @@ https://github.com/DavidNavarreICS/SharePortfolioIDA
 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 <maven.compiler.source>17</maven.compiler.source>
 <maven.compiler.target>17</maven.compiler.target>
-<sonar.organization>davidnavarreics</sonar.organization>
-<sonar.projectKey>DavidNavarreICS_SharePortfolioIDA</sonar.projectKey>
+<sonar.organization>Shubiw</sonar.organization>
+<sonar.projectKey>Shubiw_sharePortofolioIDA</sonar.projectKey>
 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 <sonar.java.libraries/>
 </properties>
