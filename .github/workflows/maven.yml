@@ -11,10 +11,10 @@ name: Java CI with Maven
 on:
   push:
     branches:
-      . '*'
+      - '**'
   pull_request:
     branches:
-      . '*'
+      - '**'
 
 env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
