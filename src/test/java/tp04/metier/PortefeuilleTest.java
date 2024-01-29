@@ -50,7 +50,7 @@ public class PortefeuilleTest {
         
         // Création du resultat attendu
         Float result = p.getCoursDuJour(bnp, j1);
-        // Test de la méthode 
+        // Test de la méthode
         assertEquals(100f ,result, 0.0);
     }
     
