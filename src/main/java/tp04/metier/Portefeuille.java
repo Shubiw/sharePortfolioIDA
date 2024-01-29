@@ -63,7 +63,13 @@ public class Portefeuille {
             } else if (this.mapLignes.get(a).getQte() == q) {
                 this.mapLignes.remove(a);
             }
-        }        
+            else{
+                System.out.println("Il n'est pas possible de vendre plus d'action qu'on en possède");
+            }
+        }      
+        else{
+            System.out.println("Vous n'avez pas les ressources pour vendre");
+        }
     }
     
     public String toString() {
