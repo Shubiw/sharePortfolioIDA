@@ -66,6 +66,16 @@ public class Portefeuille {
         }        
     }
     
+    /**
+     *
+     * @param a Action du portefeuille
+     * @param j Jour donné
+     * @return Valeur quotidienne d'une action pour un jour donné
+     */
+    public Float getCoursDuJour(Action a, Jour j) {
+        return this.mapLignes.get(a).getAction().valeur(j); //Récupération de cours de l'action pour le jour donné
+    }    
+    
     public String toString() {
         return this.mapLignes.toString();
     }
