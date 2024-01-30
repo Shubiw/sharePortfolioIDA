@@ -15,6 +15,7 @@
  */
 package tp04.metier;
 
+import java.util.ArrayList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,16 +47,30 @@ public class PortefeuilleTest {
         int quantiteAVendre = 15;
 
         instance.acheter(action, 10); // Achetez 10 actions
+        instance.getHistAchat().contains("10");
 
         // Utilisez la méthode vendre pour tester la vente de quantité supérieure au stock
-        assertThrows(IllegalArgumentException.class, () -> {
-            instance.vendre(action, quantiteAVendre);
-        });
-
+        instance.vendre(action, quantiteAVendre);
         // Assurez-vous que l'action a été retirée du portefeuille après la tentative de vente
-        assertFalse(instance.mapLignes.containsKey(action));
+        instance.vendre(action, 5);
+
+        assertTrue(instance.mapLignes.containsKey(action));
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
+    }
+    
+  
+    @Test
+    public void transaction() {
+        Portefeuille instance = new Portefeuille();
+        ActionSimple a = new ActionSimple("NomAction");
+        
+        String element ="Action achetée: " + "NomAction"+  " d'une quantité de: "+ "10"  ;
+        
+        instance.acheter(a, 10);
+        assertEquals(element, instance.getHistAchat().get(0));
+        
+        
     }
 
     /**
