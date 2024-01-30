@@ -14,13 +14,27 @@ import tp04.metier.Portefeuille;
 
 public class Run {
     
-    public static void afficherBourse(ArrayList<Action> bourse, Jour j) {
+    
+        /**
+     * Calcule la somme de deux nombres.
+     *
+     * @param bourse l'ArrayList qui contient toutes les actions
+     * @param j le jour donné en paramètre de action.valeur(j) pour connaître la valeur des actions
+     * @return check qui est vrai si il y a une action dans la liste
+     */
+
+    
+    public static boolean afficherBourse(ArrayList<Action> bourse, Jour j) { //Code de Mehdi et Controle de Amine
         System.out.println("Cours de la bourse pour le " + j.getNoJour() + "/" + j.getAnnee());
+        boolean check = false;
         for (Action element : bourse) {
             if (element.valeur(j) != 0.0f) {
+                check = true;
                 System.out.println(element.getLibelle() + " : " + element.valeur(j));
             }
         }
+        
+        return check;
     }
 
     public static void main(String[] args) {

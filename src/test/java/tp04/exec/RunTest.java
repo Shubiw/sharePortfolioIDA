@@ -89,7 +89,6 @@ public class RunTest {
         comp2 = new ActionComposee("Compo2");
         bourse.add(comp2);
         
-        bourse.add(null);
         
         
         
@@ -113,10 +112,14 @@ public class RunTest {
         rio.enrgCours(j5, 505);
         
         gog.enrgCours(j3, 50);
+        
+        boolean results = false;
 
-        Run.afficherBourse(bourse, j3);
+        results = Run.afficherBourse(bourse, j3);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+        
+        assertEquals(results, true);
     }
 
     /**
