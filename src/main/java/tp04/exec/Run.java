@@ -66,7 +66,11 @@ public class Run {
         System.out.println("Portefeuille : " + p);
         p.vendre(bnp, 50);
         System.out.println("Portefeuille : " + p);
-
+        
+        
+        // Afficher la répartition du portefeuille en pourcentage pour le jour j1
+        //System.out.println("Répartition du portefeuille en pourcentage pour le jour j1 :");
+        p.afficherPourcentagesParAction(j1);
     }
 
 }
