@@ -54,6 +54,31 @@ public class PortefeuilleTest {
         assertEquals(100f ,result, 0.0);
     }
     
-    
+    /**
+     * Fonction de test de la méthode coursPourcentageJour
+     * @throws Throwable 
+     */
+    @Test
+    public void testCoursPourcentageJour() throws Throwable {      
+        //Instanciation des jours
+        Jour j1 = new Jour(2014, 1); 
+        Jour j2 = new Jour(2014, 2);
+        
+        //Instanciation de l'action
+        ActionSimple bnp = new ActionSimple("BNP");
+        // Enregistrement des Cours pour l'action
+        bnp.enrgCours(j1, 100);
+        bnp.enrgCours(j2, 200);
+        //Instanciation du porteufeuille
+        Portefeuille p = new Portefeuille();
+        //Achat de l'action
+        p.acheter(bnp, 20);
+        
+        // Création du resultat attendu
+        String result = p.coursPourcentageJour(j1);
+        // Test de la méthode
+        String test = "BNP : \n" + "Cours du portefeuille = 2000.0\n" + "Pourcentage de l'action = 100,00%"+"\n\n";
+        assertEquals(test ,result, "0");
+    }
     
 }
