@@ -35,47 +35,7 @@ public class PortefeuilleTest {
     
     public PortefeuilleTest() {
     }
-    
-    @BeforeAll
-    public static void setUpClass() {
-        ActionSimple bnp, axa;
-        ActionComposee bqAss;
-        Jour j1, j2;
-
-        // init des objets metiers Jour
-        j1 = new Jour(2014, 1);
-        j2 = new Jour(2014, 2);
-
-        // creation d'actions simples et composée
-        bnp = new ActionSimple("BNP");
-        axa = new ActionSimple("AXA");
-        bqAss = new ActionComposee("Banque-Assurance");
-        // enrg de la composition de l'action composée
-        bqAss.enrgComposition(axa, 0.3f);
-        bqAss.enrgComposition(bnp, 0.7f);
-        // enrg. de 2 cours pour chaque action 
-        axa.enrgCours(j1, 200);
-        axa.enrgCours(j2, 250);
-        bnp.enrgCours(j1, 100);
-        bnp.enrgCours(j2, 200);
-        // affichage des cours - comme 1 action simple et 1 action
-        System.out.println("Action simple *bnp* à j1 : " + bnp.valeur(j1));
-        System.out.println("Action *Banque-Assurance* à j2 : " + bqAss.valeur(j2));
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
-
-    /**
+     /**
      * Test of acheter method, of class Portefeuille.
      */
      
@@ -86,7 +46,6 @@ public class PortefeuilleTest {
         int quantiteAVendre = 15;
 
         instance.acheter(action, 10); // Achetez 10 actions
-        
 
         // Utilisez la méthode vendre pour tester la vente de quantité supérieure au stock
         assertThrows(IllegalArgumentException.class, () -> {

@@ -5,6 +5,7 @@
  */
 package tp04.metier;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,12 +16,32 @@ import java.util.Map;
 public class Portefeuille {
     
     Map<Action, LignePortefeuille> mapLignes;
+    private ArrayList<String> historiqueAchat = new ArrayList<String>();
+    private ArrayList<String> historiqueVente = new ArrayList<String>();
+
+    public ArrayList getHistVente() {
+            return historiqueVente;
+        }
+        
+    public void setHistVente(ArrayList hist) {
+            this.historiqueVente = hist;
+        }
     
+    public ArrayList getHistAchat() {
+            return historiqueAchat;
+        }
+        
+    public void setHistAchat(ArrayList hist) {
+            this.historiqueAchat = hist;
+        }
+
     private class LignePortefeuille {
+
         
         private Action action;
         
         private int qte;
+        
         
         public int getQte() {
             return qte;
@@ -29,6 +50,10 @@ public class Portefeuille {
         public void setQte(int qte) {
             this.qte = qte;
         }
+        
+        
+        
+        
         
         public Action getAction() {
             return this.action;
@@ -47,12 +72,25 @@ public class Portefeuille {
     public Portefeuille() {
         this.mapLignes = new HashMap();
     }
+
+    public void setHistoriqueVente(Action a){
+            String element ="Action vendue: " + a.getLibelle()+  " d'une quantité de: "+ String.valueOf(this.mapLignes.get(a).getQte())  ;
+            this.historiqueVente.add(element);
+    }
+    
+    public void setHistoriqueAchat(Action a){
+            String element ="Action achetée: " + a.getLibelle()+  " d'une quantité de: "+ String.valueOf(this.mapLignes.get(a).getQte())  ;
+            this.historiqueAchat.add(element);
+    }
     
     public void acheter(Action a, int q) {
         if (this.mapLignes.containsKey(a) == false) {
             this.mapLignes.put(a, new LignePortefeuille(a, q));
+            setHistoriqueAchat(a);
+            
         } else {
             this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
+            setHistoriqueAchat(a);
         }
     }
 
@@ -60,7 +98,9 @@ public class Portefeuille {
         if (this.mapLignes.containsKey(a) == true) {
             if (this.mapLignes.get(a).getQte() > q) {
                 this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() - q);
+                setHistoriqueVente(a);
             } else if (this.mapLignes.get(a).getQte() == q) {
+                setHistoriqueVente(a);
                 this.mapLignes.remove(a);
             }
             else{
