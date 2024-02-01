@@ -18,22 +18,27 @@ public class Portefeuille {
     Map<Action, LignePortefeuille> mapLignes;
     private ArrayList<String> historiqueAchat = new ArrayList<String>();
     private ArrayList<String> historiqueVente = new ArrayList<String>();
-
-    public ArrayList getHistVente() {
+    
+    /**
+    * Récupère l'historique des transactions de vente du portefeuille.
+    *
+    * @return Une liste (ArrayList) contenant les transactions de vente du portefeuille.
+    */
+    public ArrayList getHistoriqueVente() {
             return historiqueVente;
         }
-        
-    public void setHistVente(ArrayList hist) {
-            this.historiqueVente = hist;
-        }
+   
     
-    public ArrayList getHistAchat() {
+    /**
+    * Récupère l'historique des transactions d'achat du portefeuille.
+    *
+    * @return Une liste (ArrayList) contenant les transactions d'achat du portefeuille.
+    */
+    public ArrayList getHistoriqueAchat() {
             return historiqueAchat;
         }
-        
-    public void setHistAchat(ArrayList hist) {
-            this.historiqueAchat = hist;
-        }
+    
+    
 
     private class LignePortefeuille {
 
@@ -72,25 +77,41 @@ public class Portefeuille {
     public Portefeuille() {
         this.mapLignes = new HashMap();
     }
-
-    public void setHistoriqueVente(Action a){
-            String element ="Action vendue: " + a.getLibelle()+  " d'une quantité de: "+ String.valueOf(this.mapLignes.get(a).getQte())  ;
+    /**
+    * Enregistre une transaction de vente dans l'historique du portefeuille.
+    *
+    * @param a L'action vendue.
+    * @param q La quantité d'actions vendues.
+    *
+    * La méthode crée une chaîne de description de la vente, comprenant le libellé de l'action
+    * et la quantité vendue, puis l'ajoute à l'historique des ventes du portefeuille.
+    */
+    public void setHistoriqueVente(Action a, int q){
+            String element ="Action vendue: " + a.getLibelle()+  " d'une quantité de: "+ String.valueOf(q)  ;
             this.historiqueVente.add(element);
     }
-    
-    public void setHistoriqueAchat(Action a){
-            String element ="Action achetée: " + a.getLibelle()+  " d'une quantité de: "+ String.valueOf(this.mapLignes.get(a).getQte())  ;
+    /**
+    * Enregistre une transaction d'achat dans l'historique du portefeuille.
+    *
+    * @param a L'action achetée.
+    * @param q La quantité d'actions achetées.
+    *
+    * La méthode crée une chaîne de description de l'achat, comprenant le libellé de l'action
+    * et la quantité achetée, puis l'ajoute à l'historique des achats du portefeuille.
+    */
+    public void setHistoriqueAchat(Action a, int q){
+            String element ="Action achetée: " + a.getLibelle()+  " d'une quantité de: "+ String.valueOf(q);
             this.historiqueAchat.add(element);
     }
     
     public void acheter(Action a, int q) {
         if (this.mapLignes.containsKey(a) == false) {
             this.mapLignes.put(a, new LignePortefeuille(a, q));
-            setHistoriqueAchat(a);
+            setHistoriqueAchat(a, q);
             
         } else {
             this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
-            setHistoriqueAchat(a);
+            setHistoriqueAchat(a, q);
         }
     }
 
@@ -98,9 +119,9 @@ public class Portefeuille {
         if (this.mapLignes.containsKey(a) == true) {
             if (this.mapLignes.get(a).getQte() > q) {
                 this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() - q);
-                setHistoriqueVente(a);
+                setHistoriqueVente(a, q);
             } else if (this.mapLignes.get(a).getQte() == q) {
-                setHistoriqueVente(a);
+                setHistoriqueVente(a, q);
                 this.mapLignes.remove(a);
             }
             else{
