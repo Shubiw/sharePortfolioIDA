@@ -1,5 +1,6 @@
 /*
- * Copyright 2024 David Navarre &lt;David.Navarre at irit.fr&gt;.
+ * Copyright 2024 Tylan.
+
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,8 +67,7 @@ public class Run {
         System.out.println("Portefeuille : " + p);
         p.vendre(bnp, 50);
         System.out.println("Portefeuille : " + p);
-        
-        
+        System.out.println(p.getHistoriqueAchat());
         // Afficher la répartition du portefeuille en pourcentage pour le jour j1
         //System.out.println("Répartition du portefeuille en pourcentage pour le jour j1 :");
         p.afficherPourcentagesParAction(j1);
