@@ -1,6 +1,5 @@
 /*
  * Copyright 2024 Tylan.
-
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,27 +15,72 @@
  */
 package tp04.metier;
 
-import java.util.ArrayList;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import tp04.metier.Action;
-import tp04.metier.ActionComposee;
-import tp04.metier.ActionSimple;
-import tp04.metier.Jour;
-import tp04.metier.Portefeuille;
 
 /**
  *
- * @author mro72
+ * @author Tylan
  */
 public class PortefeuilleTest {
     
     public PortefeuilleTest() {
     }
+
+    /**
+     * Test de la méthode getCoursDuJour 
+     * @throws Throwable 
+     */
+    @Test
+    public void testGetCoursDuJour() throws Throwable {
+        
+        //Instanciation des jours
+        Jour j1 = new Jour(2014, 1); 
+        Jour j2 = new Jour(2014, 2);
+        
+        //Instanciation de l'action
+        ActionSimple bnp = new ActionSimple("BNP");
+            // Enregistrement des Cours pour l'action
+        bnp.enrgCours(j1, 100);
+        bnp.enrgCours(j2, 200);
+        //Instanciation du porteufeuille
+        Portefeuille p = new Portefeuille();
+        //Achat de l'action
+        p.acheter(bnp, 20);
+        
+        // Création du resultat attendu
+        Float result = p.getCoursDuJour(bnp, j1);
+        // Test de la méthode
+        assertEquals(100f ,result, 0.0);
+    }
+    
+    /**
+     * Fonction de test de la méthode coursPourcentageJour
+     * @throws Throwable 
+     */
+    @Test
+    public void testCoursPourcentageJour() throws Throwable {      
+        //Instanciation des jours
+        Jour j1 = new Jour(2014, 1); 
+        Jour j2 = new Jour(2014, 2);
+        
+        //Instanciation de l'action
+        ActionSimple bnp = new ActionSimple("BNP");
+        // Enregistrement des Cours pour l'action
+        bnp.enrgCours(j1, 100);
+        bnp.enrgCours(j2, 200);
+        //Instanciation du porteufeuille
+        Portefeuille p = new Portefeuille();
+        //Achat de l'action
+        p.acheter(bnp, 20);
+        
+        // Création du resultat attendu
+        String result = p.coursPourcentageJour(j1);
+        // Test de la méthode
+        String test = "BNP : \n" + "Cours du portefeuille = 2000.0\n" + "Pourcentage de l'action = 100,00%"+"\n\n";
+        assertEquals(test ,result, "0");
+    }
+    
      /**
      * Test of acheter method, of class Portefeuille.
      */
@@ -104,16 +148,7 @@ public class PortefeuilleTest {
         
         
     }
-
-    /**
-     * Test of toString method, of class Portefeuille.
-     */
-
-
-    /**
-     * Test of valeur method, of class Portefeuille.
-     */
-
     
 }
 
+ 

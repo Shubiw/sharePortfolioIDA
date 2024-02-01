@@ -114,7 +114,7 @@ public class Portefeuille {
             String element ="Action achetée: " + a.getLibelle()+  " d'une quantité de: "+ String.valueOf(q);
             this.historiqueAchat.add(element);
     }
-     * Calcule et affiche le pourcentage de la valeur totale du portefeuille 
+     /* Calcule et affiche le pourcentage de la valeur totale du portefeuille 
      * pour chaque action contenue dans le portefeuille.
      * 
      * @param jour Le jour pour lequel calculer les pourcentages.
@@ -173,6 +173,16 @@ public void afficherPourcentagesParAction(Jour jour) {
         }
     }
     
+    /**
+     * Cette méthode retourne le cours d'une action pour un jour donné
+     * @param a Action du portefeuille
+     * @param j Jour donné
+     * @return un float qui est la valeur quotidienne d'une action pour un jour donné
+     */
+    public Float getCoursDuJour(Action a, Jour j) {
+        return this.mapLignes.get(a).getAction().valeur(j); //Récupération de cours de l'action pour le jour donné
+    }    
+    
     public String toString() {
         return this.mapLignes.toString();
     }
@@ -183,5 +193,27 @@ public void afficherPourcentagesParAction(Jour jour) {
             total = total + (lp.getQte() * lp.getAction().valeur(j));
         }
         return total;
+    }
+    /**
+     * Cette méthode affiche le libellé d'une action, son cours pour un jour donné, ainsi que le pourcentage de l'action dans le portefeuille.
+     * @param j Jour donné
+     * @return affichage qui est un String 
+     */
+    public String coursPourcentageJour(Jour j) {
+        /*Initialisation*/
+        float totalPortefeuille = this.valeur(j); //Valeur totale des actions du portefeuille pour un jour donné
+        float totalAction; //Valeur totale d'une ligne dans un portefeuille
+        String affichage = ""; //Affichage de tous les cours d'une journée pour un portefeuille
+        
+        /*Traitement*/
+        for (LignePortefeuille lp : this.mapLignes.values()) {
+            totalAction = lp.getQte() * lp.getAction().valeur(j); //Calcul de la valeur de totale de chaque action dans un portefeuille
+            affichage = affichage + lp.getAction().getLibelle() 
+                    + " : \nCours du portefeuille = " + totalAction 
+                    + "\nPourcentage de l'action = " + String.format("%.2f", totalAction / totalPortefeuille * 100)+"%"; // = "Libelle de l'action" + "Cours du portefeuille" + "Pourcentage de l'action"
+            affichage = affichage + "\n\n"; //Saut de 2 lignes
+        } 
+        
+        return affichage;
     }
 }

@@ -42,6 +42,7 @@ public class ActionSimple extends Action {
             this.mapCours.put(j, new Cours(j, v));
     }
     
+    
     @Override
     public float valeur(Jour j) {
         if(this.mapCours.containsKey(j) == true)

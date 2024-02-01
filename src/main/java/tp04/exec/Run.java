@@ -71,6 +71,7 @@ public class Run {
         // Afficher la répartition du portefeuille en pourcentage pour le jour j1
         //System.out.println("Répartition du portefeuille en pourcentage pour le jour j1 :");
         p.afficherPourcentagesParAction(j1);
+        
     }
 
 }
