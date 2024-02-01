@@ -50,6 +50,7 @@ public class Portefeuille {
     
     
 
+
     private class LignePortefeuille {
 
         
@@ -113,6 +114,35 @@ public class Portefeuille {
             String element ="Action achetée: " + a.getLibelle()+  " d'une quantité de: "+ String.valueOf(q);
             this.historiqueAchat.add(element);
     }
+     * Calcule et affiche le pourcentage de la valeur totale du portefeuille 
+     * pour chaque action contenue dans le portefeuille.
+     * 
+     * @param jour Le jour pour lequel calculer les pourcentages.
+     */
+    public Map<Action, String> calculerPourcentagesParAction(Jour jour) {
+    Map<Action, String> pourcentages = new HashMap<>();
+    float valeurTotale = this.valeur(jour);
+
+    for (Map.Entry<Action, LignePortefeuille> entry : mapLignes.entrySet()) {
+        Action action = entry.getKey();
+        LignePortefeuille ligne = entry.getValue();
+        float valeurAction = action.valeur(jour) * ligne.getQte();
+        float pourcentage = (valeurAction / valeurTotale) * 100;
+        pourcentages.put(action, String.format("%.2f", pourcentage) + "%");
+    }
+
+    return pourcentages;
+    
+}
+
+public void afficherPourcentagesParAction(Jour jour) {
+    
+    System.out.println("Répartition du portefeuille en pourcentage pour le jour " + jour.getNoJour() + "/" + jour.getAnnee() + " :");
+    Map<Action, String> pourcentages = calculerPourcentagesParAction(jour);
+    pourcentages.forEach((action, pct) -> System.out.println(action + ": " + pct));
+}
+
+    
     
     public void acheter(Action a, int q) {
         if (this.mapLignes.containsKey(a) == false) {

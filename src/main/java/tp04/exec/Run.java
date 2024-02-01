@@ -1,5 +1,6 @@
 /*
  * Copyright 2024 Tylan.
+
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +16,6 @@
  */
 package tp04.exec;
 
-import tp04.metier.Action;
 import tp04.metier.ActionComposee;
 import tp04.metier.ActionSimple;
 import tp04.metier.Jour;
@@ -39,7 +39,7 @@ public class Run {
         // enrg de la composition de l'action composée
         bqAss.enrgComposition(axa, 0.3f);
         bqAss.enrgComposition(bnp, 0.7f);
-        // enrg. de 2 cours pour chaque action 
+        // enrg. de 2 cours pour chaque action
         axa.enrgCours(j1, 200);
         axa.enrgCours(j2, 250);
         bnp.enrgCours(j1, 100);
@@ -68,8 +68,9 @@ public class Run {
         p.vendre(bnp, 50);
         System.out.println("Portefeuille : " + p);
         System.out.println(p.getHistoriqueAchat());
-        
- 
+        // Afficher la répartition du portefeuille en pourcentage pour le jour j1
+        //System.out.println("Répartition du portefeuille en pourcentage pour le jour j1 :");
+        p.afficherPourcentagesParAction(j1);
     }
 
 }
