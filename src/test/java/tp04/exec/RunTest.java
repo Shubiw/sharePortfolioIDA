@@ -117,7 +117,6 @@ public class RunTest {
 
         results = Run.afficherBourse(bourse, j3);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
         
         assertEquals(results, true);
     }
@@ -125,14 +124,6 @@ public class RunTest {
     /**
      * Test of main method, of class Run.
      */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        
-        
-        testAfficherBourse();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+  
     
 }
