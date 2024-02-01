@@ -92,6 +92,8 @@ public class Run {
         System.out.println("Portefeuille : " + p);
         
         afficherBourse(bourse, j1);
+        
+        p.afficherPourcentagesParAction(j1);
  
     }
 
